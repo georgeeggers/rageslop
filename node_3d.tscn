@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://d102ve2e8nbqj"]
+
+[ext_resource type="PackedScene" uid="uid://cp365wdimmxty" path="res://slop.fbx" id="1_a202f"]
+
+[node name="Node3D" type="Node3D" unique_id=1229978752]
+
+[node name="slop" parent="." unique_id=1446364701 instance=ExtResource("1_a202f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1622479, 0, 2.0579066)

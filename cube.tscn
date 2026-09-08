@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://yjmv6tcm7nw2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+lightmap_size_hint = Vector2i(14, 21)
+
+[node name="testCube" type="RigidBody3D" unique_id=1217876065]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=138817229]
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1878322381]
+mesh = SubResource("BoxMesh_g4v7s")

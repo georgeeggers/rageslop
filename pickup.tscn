@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://b2gm05dfeysfx"]
+
+[ext_resource type="Script" uid="uid://cisyi1gk2tgca" path="res://pickup.gd" id="1_iqk3k"]
+[ext_resource type="Shader" uid="uid://b0l71txl5esep" path="res://cell.gdshader" id="2_weqpt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_iqv26"]
+
+[sub_resource type="Gradient" id="Gradient_weqpt"]
+offsets = PackedFloat32Array(0.55445546, 0.55775577)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_amdaw"]
+gradient = SubResource("Gradient_weqpt")
+
+[sub_resource type="Gradient" id="Gradient_amdaw"]
+offsets = PackedFloat32Array(0.5181518, 0.7887789)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0tmqx"]
+gradient = SubResource("Gradient_amdaw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ps0g1"]
+render_priority = 0
+shader = ExtResource("2_weqpt")
+shader_parameter/albedo = Color(0.2627451, 0.6156863, 0.54901963, 1)
+shader_parameter/color_gradient = SubResource("GradientTexture1D_amdaw")
+shader_parameter/fresnel_gradient = SubResource("GradientTexture1D_0tmqx")
+
+[node name="pickup" type="RigidBody3D" unique_id=821269681]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_iqk3k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2060822626]
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1189291361]
+mesh = SubResource("BoxMesh_iqv26")
+surface_material_override/0 = SubResource("ShaderMaterial_ps0g1")

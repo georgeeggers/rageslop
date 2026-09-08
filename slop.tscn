@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cmbt0b7nk3u4h"]
+
+[ext_resource type="Shader" uid="uid://b0l71txl5esep" path="res://cell.gdshader" id="1_2up3h"]
+
+[sub_resource type="Gradient" id="Gradient_c58h7"]
+offsets = PackedFloat32Array(0.5412541, 0.5445545, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.57755774, 0.57755774, 0.57755774, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0tmqx"]
+gradient = SubResource("Gradient_c58h7")
+
+[sub_resource type="Gradient" id="Gradient_fuoal"]
+offsets = PackedFloat32Array(0.5181518, 0.7953795)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bwgqt"]
+gradient = SubResource("Gradient_fuoal")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_priqc"]
+render_priority = 0
+shader = ExtResource("1_2up3h")
+shader_parameter/albedo = Color(0.1254902, 0.12941177, 0.14117648, 1)
+shader_parameter/color_gradient = SubResource("GradientTexture1D_0tmqx")
+shader_parameter/fresnel_gradient = SubResource("GradientTexture1D_bwgqt")
+
+[node name="slop" unique_id=1446364701]
+
+[node name="guy lamp" parent="." index="0" unique_id=1557594171]
+transform = Transform3D(-99.85021, -5.471754, -2.3917795e-07, 0, -4.3711398e-06, 100.000015, -5.471754, 99.85021, 4.364591e-06, 0, 3.396471, -0.12258959)
+surface_material_override/0 = SubResource("ShaderMaterial_priqc")

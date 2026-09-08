@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://drmj6qbldot4r"]
+
+[ext_resource type="PackedScene" uid="uid://dptu5shea4vu2" path="res://player/code/player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://di2liw5skv6pi" path="res://pickupAndHold/holdable.tscn" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://b2gm05dfeysfx" path="res://pickup.tscn" id="3_h2yge"]
+
+[sub_resource type="GDScript" id="GDScript_h2yge"]
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(19.532623, 0.68359375, 21.702515)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yf5fn"]
+size = Vector3(19.461304, 1, 21.815979)
+
+[node name="worldManager" type="Node3D" unique_id=1181253636]
+script = SubResource("GDScript_h2yge")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=415596111]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1592540476]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.955826, 0.15820313, -6.1557007)
+shape = SubResource("BoxShape3D_g4v7s")
+debug_color = Color(4.5242905e-06, 0.5841427, 0.7849105, 0.41960785)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=967766709]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9452515, 0, -6.1524963)
+mesh = SubResource("BoxMesh_yf5fn")
+
+[node name="CharacterBody3D" parent="." unique_id=2096149620 instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.43755484, 2.3727546, 2.8492126)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1200949605]
+transform = Transform3D(1, 0, 0, 0, 0.92235863, 0.38633475, 0, -0.38633475, 0.92235863, 5.515728, 11.868396, 17.394278)
+shadow_enabled = true
+
+[node name="pickup" parent="." unique_id=821269681 instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.60477, 1.0000005, -0.22649997)
+
+[node name="pickup2" parent="." unique_id=329770314 instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5375042, 2.3964813, 0.06735277)
+
+[node name="pickup3" parent="." unique_id=1194634927 instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.696991, 1, 2.359848)
+
+[node name="pickup4" parent="." unique_id=1115696243 instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5470586, 1, 0.06482464)
+
+[node name="pickup5" parent="." unique_id=1608983943 instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2031603, 1.0000005, 1.6381586)
+
+[node name="pickup6" parent="." unique_id=1649991099 instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9378705, 1.0000005, -2.7618983)
+
+[node name="pickup7" parent="." unique_id=1168640315 instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.175234, 1, -1.4804039)
+
+[node name="pickup8" parent="." unique_id=2027271454 instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.482887, 0.9999995, 1.1924229)
+
+[node name="pickup9" parent="." unique_id=2114997638 instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.8236194, 1, -4.57542)
+
+[node name="CharacterBody3D2" parent="." unique_id=1212878265 instance=ExtResource("3_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9300537, 1, -13.223721)
