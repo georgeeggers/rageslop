@@ -27,6 +27,9 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED);
 
 func pickupItem(item: Interactable):
+	heldItem = item;
+	lookedAtObject = null;
+	playerUI.hideTooltip()
 	item.reparent(pickupMarker);
 	item.position = pickupMarker.position;
 	pass
@@ -60,6 +63,9 @@ func _input(event):
 		get_tree().quit()
 	elif (event.is_action_pressed("interact") && lookedAtObject):
 		lookedAtObject.interact(self)
+	elif(event.is_action_pressed("interact") && heldItem):
+		heldItem.reparent(get_tree().current_scene)
+		heldItem = null;
 		
 		
 func _physics_process(delta: float) -> void:
@@ -75,7 +81,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("sprint"):
 		speed += SPRINT_SPEED
 	
-	getLookedAtObject()
+	if(!heldItem):
+		getLookedAtObject()
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.

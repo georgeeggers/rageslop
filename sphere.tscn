@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bn3h640w2jhqn"]
+
+[ext_resource type="Shader" uid="uid://b0l71txl5esep" path="res://cellShader/cell.gdshader" id="1_8pulh"]
+[ext_resource type="Texture2D" uid="uid://jnxjwcy0l8wu" path="res://cellShader/color.tres" id="2_udds0"]
+[ext_resource type="Texture2D" uid="uid://bnktxvu6tpn5d" path="res://cellShader/fresnel.tres" id="3_5mvgh"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wr7og"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_wr7og"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_veubm"]
+render_priority = 0
+shader = ExtResource("1_8pulh")
+shader_parameter/albedo = Color(0.64775, 0.17354822, 0.34747282, 1)
+shader_parameter/color_gradient = ExtResource("2_udds0")
+shader_parameter/fresnel_gradient = ExtResource("3_5mvgh")
+
+[node name="testSphere" type="RigidBody3D" unique_id=1408864247]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=206632753]
+shape = SubResource("SphereShape3D_wr7og")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=420305195]
+mesh = SubResource("SphereMesh_wr7og")
+surface_material_override/0 = SubResource("ShaderMaterial_veubm")

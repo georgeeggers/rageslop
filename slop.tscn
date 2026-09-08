@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cmbt0b7nk3u4h"]
 
-[ext_resource type="Shader" uid="uid://b0l71txl5esep" path="res://cell.gdshader" id="1_2up3h"]
+[ext_resource type="Shader" uid="uid://b0l71txl5esep" path="res://cellShader/cell.gdshader" id="1_2up3h"]
 
 [sub_resource type="Gradient" id="Gradient_c58h7"]
 offsets = PackedFloat32Array(0.5412541, 0.5445545, 1)

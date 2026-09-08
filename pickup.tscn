@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b2gm05dfeysfx"]
 
 [ext_resource type="Script" uid="uid://cisyi1gk2tgca" path="res://pickup.gd" id="1_iqk3k"]
-[ext_resource type="Shader" uid="uid://b0l71txl5esep" path="res://cell.gdshader" id="2_weqpt"]
+[ext_resource type="Shader" uid="uid://b0l71txl5esep" path="res://cellShader/cell.gdshader" id="2_weqpt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
 
