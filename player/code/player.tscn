@@ -9,6 +9,14 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sk3jw"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ri2s5"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=2096149620 groups=["player"]]
 script = ExtResource("1_4flbx")
 SPRINT_SPEED = 10
@@ -42,3 +50,6 @@ script = ExtResource("2_ri2s5")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=2058802354]
+replication_config = SubResource("SceneReplicationConfig_ri2s5")

@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://drmj6qbldot4r"]
 
+[ext_resource type="PackedScene" uid="uid://b4qirk26005u0" path="res://menus/mainMenu.tscn" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://dptu5shea4vu2" path="res://player/code/player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bpugqhaj5a2sv" path="res://interactionSystem/gun/test_usable.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://b2gm05dfeysfx" path="res://pickup.tscn" id="3_h2yge"]
@@ -24,10 +25,30 @@ size = Vector3(19.532623, 0.68359375, 21.702515)
 [sub_resource type="BoxMesh" id="BoxMesh_yf5fn"]
 size = Vector3(19.461304, 1, 21.815979)
 
+[sub_resource type="GDScript" id="GDScript_1bvp3"]
+script/source = "extends MultiplayerSpawner
+
+@export var network_player: PackedScene
+
+func _ready() -> void:
+	multiplayer.peer_connected.connect(spawn_player)
+	
+func spawn_player(id: int):
+	if !multiplayer.is_server(): return
+	
+	var player: Node = network_player.instantiate()
+	player.name = str(id);
+
+	get_node(spawn_path).call_deferred(\"add_child\", player)
+"
+
 [node name="worldManager" type="Node3D" unique_id=1181253636]
 script = SubResource("GDScript_h2yge")
 
+[node name="MainMenu" parent="." unique_id=789967098 instance=ExtResource("1_h2yge")]
+
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=415596111]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15.716635, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1592540476]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.955826, 0.15820313, -6.1557007)
@@ -37,9 +58,6 @@ debug_color = Color(4.5242905e-06, 0.5841427, 0.7849105, 0.41960785)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=967766709]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9452515, 0, -6.1524963)
 mesh = SubResource("BoxMesh_yf5fn")
-
-[node name="CharacterBody3D" parent="." unique_id=2096149620 instance=ExtResource("1_ig7tw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.43755484, 2.3727546, 2.8492126)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1200949605]
 transform = Transform3D(1, 0, 0, 0, 0.92235863, 0.38633475, 0, -0.38633475, 0.92235863, 5.515728, 11.868396, 17.394278)
@@ -74,3 +92,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.8236194, 1, -4.57542)
 
 [node name="testUsable" parent="." unique_id=1167182314 instance=ExtResource("3_1bvp3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5425124, 1.4999995, -11.545797)
+
+[node name="spawner" type="MultiplayerSpawner" parent="." unique_id=1472350196]
+_spawnable_scenes = PackedStringArray("uid://dptu5shea4vu2")
+spawn_path = NodePath("..")
+script = SubResource("GDScript_1bvp3")
+network_player = ExtResource("1_ig7tw")

@@ -21,12 +21,19 @@ var sprinting = false;
 var speed = 5;
 const JUMP_VELOCITY = 4.5
 
-
+func _enter_tree() -> void:
+	set_multiplayer_authority(name.to_int())
+	print(name.to_int())
 
 func _ready():
+	
+	if !is_multiplayer_authority(): return
+	camera.current = is_multiplayer_authority()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED);
 
 func pickupItem(item: Holdable):
+	if !is_multiplayer_authority(): return
+	
 	heldItem = item;
 	lookedAtObject = null;
 	playerUI.hideTooltip();
@@ -36,6 +43,7 @@ func pickupItem(item: Holdable):
 	pass
 
 func getLookedAtObject():
+	if !is_multiplayer_authority(): return
 	
 	if(ray.is_colliding()):
 		var object = ray.get_collider(0);
@@ -55,13 +63,15 @@ func getLookedAtObject():
 
 
 func _input(event):
+	if !is_multiplayer_authority(): return
+	
 	if(event is InputEventMouseMotion):
 		camera.rotation.x -= event.relative.y * SENS;
 		camera.rotation.x = clamp(camera.rotation.x, -CAMERA_CLAMP, CAMERA_CLAMP);
 		rotate_y(-event.relative.x * SENS);
 		camera.orthonormalize()
 	elif (event.is_action_pressed("quit")):
-		get_tree().quit()
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	elif (event.is_action_pressed("interact") && lookedAtObject):
 		lookedAtObject.interact(self)
 	elif(event.is_action_pressed("interact") && heldItem):
@@ -72,6 +82,7 @@ func _input(event):
 		
 		
 func _physics_process(delta: float) -> void:
+	if !is_multiplayer_authority(): return
 	
 	# Add the gravity.
 	if not is_on_floor():
