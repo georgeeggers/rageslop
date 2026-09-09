@@ -1,7 +1,10 @@
 extends Node3D
 class_name Interactable
 
-var prompt;
+@export var prompt: String;
+
+func _ready():
+	self.prompt = prompt;
 
 func can_interact(player) -> bool:
 	return false

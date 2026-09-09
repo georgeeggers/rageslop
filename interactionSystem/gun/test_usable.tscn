@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://bpugqhaj5a2sv"]
+
+[ext_resource type="PackedScene" uid="uid://chn3p71fl23bk" path="res://interactionSystem/holdable/baseHoldable.tscn" id="1_g0068"]
+[ext_resource type="Script" uid="uid://qkd8tuc6kdex" path="res://interactionSystem/gun/test_usable.gd" id="2_w7m15"]
+[ext_resource type="Shader" uid="uid://b0l71txl5esep" path="res://cellShader/cell.gdshader" id="3_5btug"]
+[ext_resource type="Texture2D" uid="uid://jnxjwcy0l8wu" path="res://cellShader/color.tres" id="4_the2y"]
+[ext_resource type="Texture2D" uid="uid://bnktxvu6tpn5d" path="res://cellShader/fresnel.tres" id="5_alyu1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gixek"]
+size = Vector3(0.25, 0.25, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gf6iw"]
+size = Vector3(0.25, 0.25, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1snbw"]
+render_priority = 0
+shader = ExtResource("3_5btug")
+shader_parameter/albedo = Color(0.0049181883, 0.025428688, 0.03920178, 1)
+shader_parameter/color_gradient = ExtResource("4_the2y")
+shader_parameter/fresnel_gradient = ExtResource("5_alyu1")
+
+[sub_resource type="Gradient" id="Gradient_geld2"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_geld2"]
+gradient = SubResource("Gradient_geld2")
+
+[sub_resource type="Gradient" id="Gradient_8bmot"]
+offsets = PackedFloat32Array(0, 0.0034364262, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.93569976, 0.25440955, 3.85046e-07, 1, 0.88165843, 0.65949565, 0.13955307, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8bmot"]
+gradient = SubResource("Gradient_8bmot")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yf5fn"]
+lifetime_randomness = 0.43
+direction = Vector3(0, 0, -1)
+initial_velocity_min = 13.42
+initial_velocity_max = 34.399998
+color_ramp = SubResource("GradientTexture1D_8bmot")
+color_initial_ramp = SubResource("GradientTexture1D_geld2")
+hue_variation_min = -2.2351742e-08
+hue_variation_max = 0.119999975
+
+[sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
+radius = 0.1
+height = 0.1
+
+[node name="gun" unique_id=1167182314 node_paths=PackedStringArray("CollisionShape") instance=ExtResource("1_g0068")]
+script = ExtResource("2_w7m15")
+CollisionShape = NodePath("CollisionShape3D")
+prompt = "E to pickup grower"
+
+[node name="CollisionShape3D" parent="." index="0" unique_id=157942446]
+shape = SubResource("BoxShape3D_gixek")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1" unique_id=981501649]
+mesh = SubResource("BoxMesh_gf6iw")
+surface_material_override/0 = SubResource("ShaderMaterial_1snbw")
+
+[node name="RayCast3D" type="RayCast3D" parent="." index="2" unique_id=1477252550]
+target_position = Vector3(0, 0, -5)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="3" unique_id=1246909951]
+emitting = false
+amount = 30
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 0.22
+process_material = SubResource("ParticleProcessMaterial_yf5fn")
+draw_pass_1 = SubResource("SphereMesh_g4v7s")

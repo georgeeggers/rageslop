@@ -3,10 +3,9 @@
 [ext_resource type="Script" uid="uid://d2ky5jcdsmqfb" path="res://player/code/player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://ujp2qpqgsw83" path="res://player/code/player_ui.gd" id="2_ri2s5"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
-size = Vector3(0.9864502, 1.8325195, 0.8808594)
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ri2s5"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2ddyo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sk3jw"]
 
@@ -15,11 +14,10 @@ script = ExtResource("1_4flbx")
 SPRINT_SPEED = 10
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1638214190]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03689295, -0.030309498, 0.015896857)
-mesh = SubResource("BoxMesh_g4v7s")
+mesh = SubResource("CapsuleMesh_ri2s5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1895118083]
-shape = SubResource("CapsuleShape3D_g4v7s")
+shape = SubResource("CapsuleShape3D_2ddyo")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1990359118]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52756655, 0)
@@ -31,7 +29,7 @@ target_position = Vector3(0, 0, -2.5)
 collision_mask = 2
 
 [node name="PickupMarker" type="Marker3D" parent="Camera3D" unique_id=1313952401]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5494803, -0.02208376, -0.7346145)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, -0.75)
 
 [node name="playerUI" type="Control" parent="." unique_id=401293286]
 layout_mode = 3

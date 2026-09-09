@@ -14,7 +14,7 @@ const BASE_SPEED = 5;
 
 const pickupDistance = Vector3(0, -1, 0);
 
-var heldItem: Interactable = null;
+var heldItem: Holdable = null;
 var lookedAtObject: Interactable
 
 var sprinting = false;
@@ -26,11 +26,12 @@ const JUMP_VELOCITY = 4.5
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED);
 
-func pickupItem(item: Interactable):
+func pickupItem(item: Holdable):
 	heldItem = item;
 	lookedAtObject = null;
-	playerUI.hideTooltip()
+	playerUI.hideTooltip();
 	item.reparent(pickupMarker);
+	item.rotation = Vector3(0, 0, 0);
 	item.position = pickupMarker.position;
 	pass
 
@@ -64,8 +65,10 @@ func _input(event):
 	elif (event.is_action_pressed("interact") && lookedAtObject):
 		lookedAtObject.interact(self)
 	elif(event.is_action_pressed("interact") && heldItem):
-		heldItem.reparent(get_tree().current_scene)
+		heldItem.drop(self);
 		heldItem = null;
+	elif(event.is_action_pressed('use') && heldItem is Usable):
+		heldItem.use(self);
 		
 		
 func _physics_process(delta: float) -> void:

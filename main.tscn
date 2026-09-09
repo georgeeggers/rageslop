@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://drmj6qbldot4r"]
 
 [ext_resource type="PackedScene" uid="uid://dptu5shea4vu2" path="res://player/code/player.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://di2liw5skv6pi" path="res://pickupAndHold/holdable.tscn" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://bpugqhaj5a2sv" path="res://interactionSystem/gun/test_usable.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://b2gm05dfeysfx" path="res://pickup.tscn" id="3_h2yge"]
-[ext_resource type="PackedScene" uid="uid://bn3h640w2jhqn" path="res://sphere.tscn" id="4_1bvp3"]
 
 [sub_resource type="GDScript" id="GDScript_h2yge"]
 script/source = "extends Node3D
@@ -73,8 +72,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.482887, 0.9999995, 1.19242
 [node name="pickup9" parent="." unique_id=2114997638 instance=ExtResource("3_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.8236194, 1, -4.57542)
 
-[node name="CharacterBody3D2" parent="." unique_id=1212878265 instance=ExtResource("3_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9300537, 1, -13.223721)
-
-[node name="testSphere" parent="." unique_id=1408864247 instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4463004, 1, 0.41889048)
+[node name="testUsable" parent="." unique_id=1167182314 instance=ExtResource("3_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5425124, 1.4999995, -11.545797)

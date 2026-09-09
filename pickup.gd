@@ -2,9 +2,6 @@ extends Interactable
 
 @onready var collisionShape = $CollisionShape3D
 	
-func _ready():
-	self.prompt = "E To Interact!";
-	
 func can_interact(player) -> bool:
 	return true
 
